@@ -11,6 +11,8 @@ class CacheLRU:
     """Cache em memória com capacidade limitada e política de descarte LRU."""
 
     def __init__(self, capacidade: int = 3) -> None:
+        if isinstance(capacidade, bool) or not isinstance(capacidade, int):
+            raise TypeError("A capacidade deve ser um número inteiro.")
         if capacidade <= 0:
             raise ValueError("A capacidade deve ser maior que zero.")
 

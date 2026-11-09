@@ -42,6 +42,11 @@ class TestCacheLRU(unittest.TestCase):
         with self.assertRaises(ValueError):
             CacheLRU(-1)
 
+    def test_capacidade_deve_ser_inteira(self):
+        for valor in (True, False, 1.5, float("nan"), float("inf"), "3", None):
+            with self.subTest(valor=valor), self.assertRaises(TypeError):
+                CacheLRU(valor)
+
 
 if __name__ == "__main__":
     unittest.main()
